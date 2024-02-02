@@ -1,0 +1,1221 @@
+dvlClient:true
+ 
+deletCategory
+ 
+category
+ 
+ status
+ 
+name: editCategory,
+ 
+editCategory
+ 
+category
+ 
+deleteCategory
+ 
+updateCategory
+ 
+updateCategory
+ 
+ //Cria uma categoria
+  async createDVL(req: Request, res: Response) {
+    const {
+        name,paidOut,toReceive,userId
+    } = req.body;
+    try {
+      const createMagazine = await prisma?.dvl.create({
+        data: {
+          name,paidOut,toReceive,userId
+        },
+      });
+      return res.status(200).json({ message: "Categoria criada com sucesso!" });
+    } catch (error) {
+         console.log(error)
+      return this?.handleError(error, res);
+    } finally {
+      return this?.handleDisconnect();
+    }
+  }
+ 
+ include:{
+          magazine:true
+        }
+ 
+categoryOne
+ 
+getOneCategory
+ 
+categories
+ 
+ include:{
+            magazine:true,
+            article:true
+        }
+ 
+category
+ 
+Categories
+ 
+DvlController
+ 
+DvlController
+ 
+import { Response, Request } from "express";
+import prisma from "../../server/prisma";
+
+class Magazine {
+  //Funçao para tratar dos erros no servidor
+  private handleError(error: any, res: Response) {
+    console.error(error);
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
+  //Função para desconetar o orm prisma
+  private async handleDisconnect() {
+    return await prisma?.$disconnect();
+  }
+  //Retorna todas as categorias
+  async getAllMagazine(req: Request, res: Response) {
+    try {
+      const getMagazine = await prisma?.magazine.findMany({
+        include: {
+          article: true,
+          Category:true
+        },
+      });
+
+      return res.status(200).json(getMagazine);
+    } catch (error) {
+      console.log(error);
+      return this?.handleError(error, res);
+    } finally {
+      return this?.handleDisconnect();
+    }
+  }
+  //Retorna uma categoria especifica
+  async getOneMagazine(req: Request, res: Response) {
+    const { slug } = req.params;
+
+    try {
+      const magazine = await prisma?.magazine.findUnique({
+        where: { id: Number(slug) },
+      });
+
+      return res.status(200).json(magazine);
+    } catch (error) {
+      return this?.handleError(error, res);
+    } finally {
+      return this?.handleDisconnect();
+    }
+  }
+
+  //Cria uma categoria
+  async createMagazine(req: Request, res: Response) {
+    const {
+      author,
+      company,
+      name,
+      description,
+      categoryId,
+      price,
+      volume,
+     
+    } = req.body;
+  
+      const {cover_file, pdf_file } = req.files as any
+      const pdf = pdf_file[0]?.location
+      const cover = cover_file[0]?.location
+    try {
+      const createMagazine = await prisma?.magazine.create({
+        data: {
+          author,
+          company,
+          name,
+          description,
+          magazine_pdf:pdf,
+          price:Number(price),
+          volume,
+          cover:[cover],
+          categoryId:Number(categoryId),
+        },
+      });
+      return res.status(200).json({ message: "Categoria criada com sucesso!" });
+    } catch (error) {
+      console.log(error)
+      return this?.handleError(error, res);
+    } finally {
+      return this?.handleDisconnect();
+    }
+    
+  }
+  //Atualiza uma categoria especifica
+  async updateMagazine(req: Request, res: Response) {
+    const { slug} = req.params
+    const {
+      
+      author,
+      company,
+      name,
+      description,
+      categoryId,
+      price,
+      volume,
+     
+    } = req.body;
+    console.log(slug)
+      const {cover_file, pdf_file } = req.files as any
+      const pdf = pdf_file[0]?.location
+      const cover = cover_file[0]?.location
+
+    if (!slug) {
+      return res
+        .status(404)
+        .json({ message: "Não foi possivel atualizar o imóvel!" });
+    }
+    try {
+      const updateMagazine = await prisma?.magazine.update({
+        where: {
+          id: Number(slug),
+        },
+        data: {
+          author,
+          company,
+          name,
+          description,
+          magazine_pdf:pdf,
+          price:Number(price),
+          volume,
+          cover:[cover],
+          categoryId:Number(categoryId),
+        },
+      });
+      return res
+        .status(200)
+        .json({ message: "Categoria atualizada com sucesso!" });
+    } catch (error) {
+       console.log(error)
+      return this.handleError(error, res);
+    } finally {
+      return this?.handleDisconnect();
+    }
+    
+  }
+  //Delete uma categoria especifica
+  async deleteMagazine(req: Request, res: Response) {
+    const { id } = req.body;
+    if (!id) {
+      return res
+        .status(403)
+        .json({ message: "Não foi possível encontrar a categoria!" });
+    }
+    try {
+      const deletMagazine = await prisma?.magazine.delete({
+        where: {
+          id: Number(id),
+        },
+      });
+      return res
+        .status(200)
+        .json({ message: "Categoria deletado com sucesso!" });
+    } catch (error) {
+      return this?.handleError(error, res);
+    } finally {
+      return this?.handleDisconnect();
+    }
+  }
+}
+
+const MagazineController = new Magazine();
+export default MagazineController;
+
+ 
+//User
+
+//User Master
+ 
+//Payemnts and Orders
+ 
+: { children: React.ReactNode }
+ 
+// app/providers.tsx
+ 
+dvlClient:{
+         
+        }
+ 
+ select:{
+            
+          }
+ 
+  include:{
+        
+        orders:{
+        include:{
+          dvl:true
+        }
+ 
+dvlClient:true,
+ 
+  orders:true
+ 
+{
+              name
+            }
+ 
+dvlItems
+ 
+ id        Int    @id @default(autoincrement())
+ 
+user    user?  @relation(fields: [userId], references: [id])
+  userId  Int?
+ 
+  dvlClient dvl[]
+ 
+  id        Int    @id @default(autoincrement())
+ 
+ id:Number(items.id),
+ 
+const { slug } = req.params
+ 
+:slug
+ 
+dvls
+ 
+const dvls = await prisma?.dvl.findMany({
+ 
+items
+ 
+id
+ 
+ console.log(getStatus)
+ 
+  const id = data.i
+ 
+console.log(data.id)
+ 
+ try
+ 
+console.log(getStatus)
+ console.log(getStatus.status)
+ 
+status
+ 
+onsole.log(req.body)
+ 
+gtOrder
+ 
+ console.log(gtOrder)
+ 
+WebHook
+ 
+webhook
+ 
+post
+ 
+notification_url:"https://aff0-2804-4b0-11b0-4800-7192-45bb-486a-3cb3.ngrok-free.app/webhook",
+ 
+ notification_url:"http://localhost:5000/webhook",
+ 
+://aff0-2804-4b0-11b0-4800-7192-45bb-486a-3cb3.ngrok-free.app
+ 
+webhook
+ 
+   console.log(createPreference)
+ 
+console.log(req.query)
+ 
+TEST-8338383558586641-083109-6e8b7e1cee69dfe04fc5eb253f8f38d1-1440745780
+ 
+ accessToken:"",
+ 
+TEST-5209000350365804-012112-78908f97b5f3d4d1b9b3627c2e1676f9-1440745780
+ 
+WebHook
+ 
+get
+ 
+GatwayPayment
+ 
+,(req,res)=>{}
+ 
+ console.log(req.query)
+ 
+ngrok
+ 
+ try {
+   
+    
+
+    const createPreference = await preference.create({
+      body: {
+      
+        back_urls: {
+          success: "http://localhost:3000/sucess",
+          failure: "http://localhost:3000/failure",
+        },
+        items: items,
+        payment_methods:{
+            installments:4,
+            excluded_payment_types:[
+                {
+                    id: "ticket"
+                }
+            ]
+        },
+        auto_return:"approved",
+        
+  
+    
+       
+      },
+    }) ;
+   
+     
+ 
+    return res.status(200).json({id:createPreference.id});
+  } catch (error) {
+    console.log(error);
+  }
+ 
+  const {book} = req.body;
+  const items = book.map((items: any) => {
+    return {
+      id: items.id,
+      title: items.title,
+      unit_price: items.price,
+      currency_id: "BRL",
+      quantity: items.qtd,
+    };
+  });
+ 
+GatwayPayment
+ 
+console.log()
+ 
+metadata:{
+          userID:
+        }
+ 
+ const paymentMethods = {
+        creditCard: "all",
+        bankTransfer: "all",
+        onboarding_credits: "all",
+        wallet_purchase: "all",
+        maxInstallments: 4, // Configuração de parcelamento máximo
+      }
+ 
+payment_methods:{
+        default_payment_method_id:"Pix"
+       }
+ 
+payment.s
+ 
+const preference = new Preference(mercadoPago);
+const payment = new Payment(mercadoPago);
+ 
+import { MercadoPagoConfig, Payment, Preference ,Customer} from "mercadopago";
+ 
+payment.create
+ 
+var mercadopago = require('mercadopago');
+mercadopago.configurations.setAccessToken("TEST-5209000350365804-012112-78908f97b5f3d4d1b9b3627c2e1676f9-1440745780");
+
+ 
+mercadopago.payment.save(req.body)
+  .then(function(response:any) {
+    const { status, status_detail, id } = response.body;
+    res.status(response.status).json({ status, status_detail, id });
+  })
+  .catch(function(error:any) {
+    console.error(error);
+  })
+ 
+paymentMethods
+ 
+     
+        ...settings.customization,
+ 
+settings = {
+ 
+ customization: {
+      visual: {
+        style: {
+          theme: "default",
+        },
+      },
+ 
+initialization: {
+      preferenceId: "<PREFERENCE_ID>",
+      payer: {
+        firstName: "",
+        lastName: "",
+        email: "",
+      },
+    },
+ 
+ atm: "all",
+ 
+ payment_methods:{
+            default_card_id:"all",
+            excluded_payment_types:[
+              {id:"atm"}
+            ]
+        }
+ 
+id:createPreference.id
+ 
+    console.log(createPreference.id)
+ 
+  default_payment_method_id:"pix",
+ 
+"atm"
+ 
+ const method = payment.create({
+    body:{
+
+    }
+  })
+ 
+{book}
+ 
+const payment = new Payment(mercadoPago);
+ 
+ payment.get({id:"pix"})
+    console.log(payment)
+ 
+preference
+ 
+const paymentMethods = await payment.get();
+ 
+ mercadoPago..getPaymentMethods
+ 
+payment
+ 
+  payment.get().then(console.log).catch(console.log);
+ 
+aymentMethod.get().then(console.log).catch(console.log);
+ 
+paymentMethod
+ 
+PaymentMethod
+ 
+payment_methods: {
+            creditCard: "all",
+                    bankTransfer: "all",
+                    atm: "all",
+                    onboarding_credits: "all",
+                    wallet_purchase: "all",
+            maxInstallments: 4
+          },
+ 
+paymentMethods
+ 
+   console.log(items)
+ 
+cart
+ 
+cart
+ 
+createPreference
+ 
+ res.json({
+        id: result.id,
+      });
+ 
+cart
+ 
+cart
+ 
+cart
+ 
+payment
+ 
+ crossOriginIsolated.log(cart0)
+ 
+createPreference
+ 
+    console.log(paymente)
+ 
+  purpose:"",
+ 
+const  paymente = await payment.create({body:{
+        installments:6,
+        payment_method_id:"pix"
+        
+
+        
+      }})
+ 
+payment_method_id
+ 
+external_reference
+ 
+createPreference
+ 
+  console.log(items);
+ 
+client
+ 
+payment_methods:{
+        default_payment_method_id:"PIX"
+       }
+ 
+
+
+ 
+ payment_methods:{
+            default_payment_method_id:"pix",
+             
+            installments:6,
+           
+            
+            
+             
+            
+            
+            
+        },
+ 
+ excluded_payment_methods:[
+                {id:"atm"},
+                {id:"ticket"}
+            ]
+ 
+   {}
+            ],
+ 
+ticket',
+ 
+atm',    
+      
+ 
+// Exclui métodos de pagamento como transferência bancária
+ 
+   "atm"
+            ]
+ 
+default_payment_method_id:"pix"
+ 
+efault_installments:6,
+ 
+
+			onboarding_credits: "all",
+			wallet_purchase: "all",
+			bankTransfer: "all",
+ 
+creditCard: "all",
+ 
+paymentMethods
+ 
+maxInstallments: 6
+ 
+		atm: "all",
+ 
+payment_methods:{
+            default_installments:4,
+            default_payment_method_id:'pix'
+        }
+ 
+[
+                {
+                    id:"1",
+                    title:"Revista Digital",
+                    quantity:1,
+                    unit_price:19,
+                    description:"Revista digital",
+                    picture_url:"https://img.freepik.com/vetores-gratis/revista-ilustracao-realista-com-paginas-abertas-com-artigos_1284-64495.jpg"
+
+                }
+            ],
+ 
+'1'
+ 
+items
+ 
+name
+ 
+ [
+                {
+                  id:"1",
+                  title: "Revista Digital",
+                  unit_price: 199,
+                  currency_id: "BRL",
+                  quantity: 1,
+                  
+                },
+              ],
+ 
+: [
+                {
+                  id:"1",
+                  title: "Revista Digital",
+                  unit_price: 199,
+                  currency_id: "BRL",
+                  quantity: 1,
+                  
+                },
+              ],
+ 
+const preferenceItems = {
+            items: items,
+      
+            back_urls: {
+              success: "http://localhost:5173/",
+              failure: "http://localhost:3000/fallo",
+            },
+      
+            auto_return: "approved",
+          };
+ 
+{ cart}
+ 
+[
+              {
+                title: "Revista Digital",
+                unit_price: 199,
+                currency_id: "BRL",
+                quantity: 1,
+                
+              },
+            ],
+ 
+sucess
+ 
+success
+ 
+console.log(createPreference)
+ 
+preferenceItems as any
+ 
+preference
+ 
+preference
+ 
+const response = await 
+           console.log(response)
+           return res.status(200).json(response)
+ 
+client
+ 
+.create(preference)
+ 
+preference
+ 
+mercadoPago.configure({ )
+ 
+accessToken:""}
+ 
+require("mercadopago")
+ 
+ Payment
+ 
+m.create({body:{preference }}as any) 
+ 
+payment
+ 
+const client = new MercadoPagoConfig({);
+const payment = new Payment(client); 
+ 
+     items: [
+                {
+                  title: "Revista Digital",
+                  unit_price: 199,
+                  currency_id: "BRL",
+                  quantity: 1,
+                  
+                },
+            ]
+ 
+items:i
+ 
+preference as any
+ 
+ as any
+ 
+.preference?.
+ 
+create
+ 
+response
+ 
+reposnse
+ 
+producto.cantidad
+ 
+ARS
+ 
+producto.precio
+ 
+producto.nombre
+ 
+  const body = {
+        transaction_amount: 12.34,
+        description: 'Lapis',
+        payment_method_id: '1',
+        payer: {
+            email: 'teste@gmail.com'
+        },
+    };
+    
+    // Step 5: Make the request
+    payment.create({ body }).then(console.log).catch(console.log);
+ 
+<DESCRIPTION>
+ 
+<EMAIL>
+ 
+<PAYMENT_METHOD_ID>
+ 
+ return res.status(200).json({})
+ 
+payment
+ 
+Response
+ 
+access_token
+ 
+options: { timeout: 5000, idempotencyKey: 'abc' } }
+ 
+   return (  );
+ 
+decrement
+ 
+increment
+ 
+39
+ 
+Number(pay)
+ 
+{
+          decrement: Number(someValues[0]),
+        },
+ 
+ decrement: {
+         
+        }
+ 
+paidOut:Number(someValues[0])
+ 
+console.log(dvl, pay)
+ 
+ console.log()
+ 
+"Camisa Skate"
+ 
+console.log(slug)
+ 
+req.body 
+ 
+console.log(req.body)
+ 
+name
+ 
+"Camisa Skate"
+ 
+post
+ 
+findUnique
+ 
+data:{
+       paidOut:39
+     }
+ 
+updateMany
+ 
+toReceive
+ 
+paidOut
+ 
+post
+ 
+updateMany
+ 
+ where:{
+       name:"Camisa Branca"
+     },
+     data:{
+       paidOut:0
+     }
+ 
+findMany
+ 
+post
+ 
+ where:{
+        name:"Camisa Branca"
+      },
+      data:{
+        paidOut:0
+      }
+ 
+updateMany
+ 
+toReceive
+ 
+Skate
+ 
+paidOut
+ 
+findMany
+ 
+post
+ 
+where:{
+        name:"Camisa Skate"
+      },
+      data:{
+        paidOut:0
+      }
+ 
+updateMany
+ 
+Branca
+ 
+toReceive
+ 
+Skate
+ 
+get
+ 
+findMany
+ 
+updateMany
+ 
+ where:{
+        name:"Camisa Branca"
+      },
+      data:{
+        price:39
+      }
+ 
+post
+ 
+Skate
+ 
+get
+ 
+findMany
+ 
+{message:"Usuario criado com sucesso",dvls}
+ 
+uniqueDvlEntries
+ 
+;
+ 
+  distinct: ['name'],
+      orderBy: {
+        name: 'asc', // Ordena por nome para garantir consistência nos resultados
+      },
+ 
+prisma
+ 
+createUSer
+ 
+post
+ 
+ where:{
+        name:"Camisa Skate"
+      },
+      data:{
+        paidOut:10,
+        toReceive:10
+
+      }
+ 
+updateMany
+ 
+const {name} = req.body
+ 
+findMany
+ 
+dvlClient:{
+          some:{
+            name:{
+              contains:"Camisa Skate"
+            }
+          }
+ 
+user
+ 
+some:{
+            name:"Camisa Skate"
+          }
+ 
+"Camisa Skate"
+ 
+include:{
+        dvlClient:true
+      }
+ 
+data:{
+        name
+      }
+ 
+create
+ 
+category
+ 
+createDVL
+ 
+oute.get("/teste", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+route.get("/outra-rota", async (req, res) => {
+  // Recupera o valor do cookie 'tempHash' da propriedade 'cookies' do objeto 'req'
+  const tempHash = req.cookies.tempHash;
+
+  if (tempHash) {
+    console.log("rota liberada");
+    res.send("autorizaddo");
+  } else {
+    console.log("nao liberado");
+    return res.send("Nao autorizado");
+  }
+});
+ 
+,createUSer
+ 
+chekingToken, setTempHashCookie
+ 
+/book/:slug
+ 
+onst { slug } = req.params;
+
+  try {
+    const getOneMagazine = await prisma?.magazine.findUnique({
+      where: { id: Number(slug) },
+    });
+    if (!getOneMagazine) {
+      return res.status(404).json({ message: "Nenhuma revista encontrada!" });
+    }
+    console.log(req.cookies);
+    return res.status(200).json(getOneMagazine);
+  } catch (error) {
+    console.log(error);
+  }
+ 
+name:category
+ 
+category
+ 
+Category
+ 
+CategoriesController
+ 
+Categories
+ 
+Categories
+ 
+payReceive Int
+ 
+magazine
+ 
+    
+ 
+updateMagazine
+ 
+ data: {
+          name: category,
+        },
+ 
+body
+ 
+, category 
+ 
+magazine
+ 
+createMagazine
+ 
+createMagazine
+ 
+magazine_pdf
+ 
+   cover,
+ 
+magazine_pdf,
+ 
+magazine
+ 
+magazine
+ 
+magazine
+ 
+magazine
+ 
+article
+ 
+magazine
+ 
+slug,
+ 
+updateMagazine
+ 
+ data: {
+          name: category,
+        },
+ 
+const { slug, category } = req.body;
+ 
+   console.log(req.body)
+     console.log(req.files)
+ 
+cate
+ 
+ c
+      categoryId,
+ 
+pdf
+ 
+onst magazine_pdf =  req.files?.pdf_file[0].location as any
+ 
+pdf = 
+ 
+magazine_pdf,
+ 
+category
+ 
+category
+ 
+Magazine
+ 
+magazine
+ 
+Magazine
+ 
+magazine
+ 
+magazine
+ 
+author,
+          company,
+          name,
+          description,
+          magazine_pdf,
+          price,
+          volume,
+          cover,
+          categoryId,
+ 
+author,
+      company,
+      name,
+      description,
+      magazine_pdf,
+      price,
+      volume,
+      cover,
+      categoryId,
+ 
+magazine
+ 
+magazine
+ 
+magazine
+ 
+getMagazine
+ 
+include: {
+          article: true,
+        },
+ 
+magazine
+ 
+MagazineController
+ 
+Magazine
+ 
+agazine
+ 
+route.post("/article-upload", UploadController.articleUpload);
+ 
+import UploadController from "../controllers/upload";
+ 
+deleteMagazine
+ 
+updateMagazine
+ 
+createMagazine
+ 
+route.get("/sub-category/:slug", CategoriesController.getOneSubCatefory);
+ 
+getOneMagazine
+ 
+getAllMagazine
+ 
+import UploadController from "../controllers/upload";
+ 
+
+
+ 
+import UploadController from "../controllers/upload";
+ 
+deleteCategory
+ 
+updateNagazine
+ 
+createMagazine
+ 
+getOneMagazine
+ 
+getAllMagazine
+ 
+Category
+ 
+MagazineController
+ 
+Magazine
+ 
+Magazine
+ 
+CategoriesController
+ 
+CategoriesController
+ 
+Categories
+ 
+update
+ 
+categories
+ 
+updateCategory
+ 
+categories
+ 
+Category
+ 
+category
+ 
+ name:category
+ 
+Category
+ 
+create
+ 
+categories
+ 
+if (!getOneHouse) {
+                return res.status(404).json({ message: "Nenhum imóvel encontrado!" })
+            }
+ 
+categories
+ 
+Category
+ 
+getCategories
+ 
+ if (!getCategories || getCategories.length <= 0) {
+                console.log("Aqui")
+                return res.status(404).json({ message: "Não possui categorias cadastradas!" })
+            }
+ 
+Categories
+ 
+ select:{
+                    
+                    name:true,
+                    id:true,
+                    Houses:true
+                }
+ 
+categories
+ 
