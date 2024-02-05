@@ -1,3 +1,1406 @@
+console.log("erro ao fazer login")
+ 
+avatar
+ 
+image
+ 
+avatar
+ 
+image
+ 
+avatar
+ 
+image
+ 
+avatar
+ 
+image
+ 
+avatar
+ 
+image
+ 
+// ajuste conforme necessário
+ 
+accessToken
+ 
+adress:user?.adress,
+            cep:user?.cep,
+            city:user?.city,
+ 
+adress
+ 
+adress
+ 
+adress
+ 
+avatar
+ 
+avatar
+ 
+JWT
+ 
+ const accessToken = jwt.sign( {
+         id: user.id,
+        name: user.name,
+        email: user.email}, process.env.SECRET,{ expiresIn: '1d' });
+ 
+ process.env.NEXTAUTH_SECRE
+ 
+// adicione outros campos necessários ao token
+ 
+chekingEmail
+ 
+chekingEmail
+ 
+console.log("email e senha batem pode fazer o login ")
+ 
+email
+ 
+email, password
+ 
+credentials
+ 
+ console.log(credentials)
+ 
+createAccount
+ 
+const chekingEmail = await prisma?.user.findUnique({
+        where:{
+            email:
+        }
+     })
+     if(chekingEmail){
+       throw new Error("E-mail já cadastrado no banco de dados!");
+       
+     }
+    try {
+        const create = await prisma?.user.create({
+            data: {
+              name,
+              password,
+              email,
+              cep,
+              adress,
+              city,
+              complement,
+              numberAdress,
+      
+            },
+          });
+          return res.status(200).json({message:"Conta criada com sucesso!"})
+    } catch (error) {
+        return this?.handleError(error,res)
+    }
+    finally{
+        return this?.handleDisconnect()
+    }
+ 
+email
+ 
+name,
+      password,
+      email,
+      cep,
+      adress,
+      city,
+      complement,
+      numberAdress,
+ 
+createAccount
+ 
+signup
+ 
+ console.log(req.body)
+ 
+ return res.status(500).json({message:"E-mail já cadastrado no banco de dados!"})
+ 
+res,error
+ 
+Categories
+ 
+CategoriesController
+ 
+CategoriesController
+ 
+route.post("/create-user",async (req:Request,res:Response)=>{
+ const creatUser = await prisma?.user.create({
+  data:{
+    name:"Admin",
+   
+    }
+    
+
+ 
+ })
+ return res.status(200).json(creatUser)
+})
+ 
+dada
+ 
+items.qtd
+ 
+ "https://nova-escola-producao.s3.amazonaws.com/9jwdcjASGFYN5GAaDFGYSexYQpTNTHzJ9CWPAwRse8A4CBK3FchguH28ECBX/ne326-arevista-01.jpg",
+ 
+title
+ 
+book
+ 
+book
+ 
+https://plashmagazine.s3.sa-east-1.amazonaws.com/1-4ac0c1de-934d-4d69-9f65-74043271f59d.png
+ 
+teste
+ 
+teste
+ 
+create
+ 
+upsert
+ 
+   connect:{
+            id:2
+          }
+ 
+update
+ 
+ connect:{
+            id
+           }
+ 
+:{
+              
+            }
+ 
+update
+ 
+ create:{
+             
+              
+            }
+ 
+cover:teste
+ 
+"teste"
+ 
+[""]
+ 
+ : "url_do_pdf_da_revista",
+ 
+pdf
+ 
+article
+ 
+Nova Revista
+ 
+teste
+ 
+name
+ 
+ data:{
+
+        }
+ 
+update
+ 
+library:{
+          include:{
+            magazine:true
+          }
+        }
+ 
+ user     user?              @relation(fields: [userId], references: [id])
+  userId   Int?
+ 
+ Libray    Libray[]
+ 
+Libray
+ 
+upsert
+ 
+where:{
+          id:2
+        }
+       
+ 
+id:2,
+ 
+ update:{
+          
+        }
+ 
+library:{
+            create:{
+              
+            }
+          }
+ 
+ library:{
+      create:{
+        magazine
+
+        
+      }
+    }
+ 
+library:{
+      create:{
+        name:"Admin"
+      }
+ 
+articles Json[]
+  user     user?              @relation(fields: [userId], references: [id])
+  userId   Int?
+ 
+  // Passo 2: Atualize a biblioteca do usuário adicionando a nova revista
+        prisma?.user.upsert({
+          where: {
+              id:2
+          },
+        
+      })
+ 
+  update: {
+            library:{
+              create:{
+                 magazine:{
+                  
+                 }
+              }
+            }
+          },
+          create: {
+            
+          }
+ 
+user_id_tag: { // <-- And this bit is important
+                  user_id: user.userId,
+                  tag: tag.tag
+              }
+ 
+likes
+ 
+user:{}
+ 
+  where: {
+            id:2
+          },
+          
+
+         
+          
+          
+          
+
+          
+    })
+ 
+update:{
+            magazine:{
+              create:{
+               
+                name: "Nova Revista",
+                magazine_pdf: "Nova Revista",
+                author: "Nova Revista",
+                cover: "url_do_pdf_da_revista",
+               }
+                
+              }
+            },
+            
+ 
+create:{
+            userId:usuario.id
+          }
+ 
+ata:{
+ 
+update
+ 
+   userId:usuario.id
+ 
+     },
+            userId:usuario.id
+ 
+ name: "Nova Revista",
+                magazine_pdf: "Nova Revista",
+                author: "Nova Revista",
+                cover: "url_do_pdf_da_revista",
+ 
+data
+ 
+create
+ 
+update
+ 
+create
+ 
+cover
+ 
+article
+ 
+teste
+ 
+usuario.id
+ 
+ update: {
+            userId:2,
+            magazine:{
+              create:{
+                author:"teste",
+                name:"teste",
+                cover:["este"],
+                id:2,
+              }
+            }
+          
+          },
+ 
+  magazine: {
+              create:{
+              
+              
+
+              },
+            },
+          },
+        });
+ 
+ magazine_pdf:"teste"
+ 
+magazine_pdf:"teste",
+ 
+["teste"]
+ 
+"teste"
+ 
+ author:"teste",
+                name:"teste",
+                magazine_pdf:"teste",
+                cover:['teste']
+ 
+ novaRevista
+ 
+data: {
+            magazine: {
+              create: novaRevista,
+            },
+          },
+ 
+userId: usuario.id,
+ 
+update
+ 
+userId
+ 
+ const result = await prisma?.user.upsert({
+        where: {
+          id: 2,
+        },
+        update:{
+          library:{
+            create:{
+              articles:novaRevista
+            }
+          }
+           
+          
+        }
+       
+      });
+      console.log(result);
+ 
+novaRevista
+ 
+magazine_pdf
+ 
+name
+ 
+cover: ["url_da_capa"],
+ 
+name
+ 
+author: "Autor da Nova Revista",
+ 
+ create:{
+              articles:"teste"
+            }
+ 
+create:{
+              magazine:novaRevista
+            }
+ 
+create
+ 
+novaRevista
+ 
+update:{}
+ 
+userId
+ 
+const result = await prisma?.user.update({
+        where: {
+          id: userId,
+        },
+        data:{
+          library:{
+            create:{
+              magazine:{
+                create:{
+                  name: "Nova Revista",
+        author: "Autor da Nova Revista",
+        cover: ["url_da_capa"],
+        magazine_pdf: "url_do_pdf_da_revista",
+              }
+            }
+          }
+        }
+      });
+ 
+update
+ 
+data: {
+          library: {
+            update: 
+          },
+        },
+ 
+{
+              magazine: {
+                create:{
+                  
+                }
+              },
+            },
+ 
+novaRevista
+ 
+  create:,
+              },
+ 
+novaRevista
+ 
+const result = await prisma?.user.update({
+        where: {
+          id: 2,
+        },
+
+       data:{
+        library:{
+          update:{
+            data:novaRevista
+          }
+        }
+       }
+       
+      });
+ 
+const result = await prisma?.user.update({
+        where: {
+          id: 2,
+        },
+
+       data:{
+        library:{
+          update:{
+            data:novaRevista
+          }
+        }
+       }
+       
+      });
+      console.log(result);
+    }
+ 
+{
+              magazine:{
+                create:{
+                  author:""
+                }
+              }
+            }
+ 
+articles:no
+ 
+create
+ 
+novaRevista
+ 
+updateMany
+ 
+data:{
+        
+       }
+ 
+:{
+         create:{
+          magazine:{
+            create:{
+              name: "Nova Revista",
+              author: "Autor da Nova Revista",
+              cover: ["url_da_capa"],
+              magazine_pdf: "url_do_pdf_da_revista",
+            }
+          }
+         }
+        }
+ 
+library
+ 
+upsert
+ 
+ update:{
+            data:{
+              articles:{
+                
+              }
+            }
+          }
+ 
+novaRevista
+ 
+ library:{
+          create:{
+            magazine:{
+              create:{
+                author:"teste",
+                magazine_pdf"
+              }
+            }
+          }
+        }
+       }
+ 
+magazine:{
+              create:{
+                
+              }
+            }
+ 
+create
+ 
+update
+ 
+create
+ 
+ame: "New libray",
+ 
+ name     String
+ 
+ 
+                  author:"teste",
+                  magazine_pdf:"teste",
+                  name:"teste",
+                  cover:['este']
+ 
+create:{
+ 
+magazine
+ 
+true
+ 
+ novaRevista
+ 
+library:{
+       
+          
+          
+        }
+ 
+create:{
+            magazine:{
+              create:novaRevista
+                
+              
+            }
+ 
+ connectOrCreate:{
+ 
+uthor:""
+ 
+libray
+ 
+data:{
+    magazine:{
+      connect:{
+        
+      }
+    }
+   }
+ 
+magazine:{
+      connect:{
+        
+      }
+    }
+ 
+where: {
+    userId: userId,
+  },
+   data:{
+    magazine:{
+
+    }
+   }
+ 
+upsert
+ 
+create
+ 
+updateMany
+ 
+articles:{
+      push:novaRevista
+    }
+ 
+update: {
+    magazine: {
+      create: novaRevista,
+    },
+ 
+ create: {
+    userId: userId,
+    name: "Nome da Library",  // Adicione outros campos conforme necessário
+    magazine: {
+      create: [
+        novaRevista,
+      ],
+    },
+  },
+ 
+upsert
+ 
+const result = await prisma?.libray.upsert({
+  where: {
+    user:{
+      id:userId
+    }
+  },
+ 
+  update: {
+    magazine: {
+      create: novaRevista,
+    },
+  },
+});
+ 
+userId
+ 
+ create: {
+    name: "Nome da Library",  // Adicione outros campos conforme necessário
+    magazine: {
+      create: [
+        novaRevista,
+      ],
+    },
+  },
+ 
+const magazinesUpdate = await prisma?.user.create({
+       
+     })
+ 
+upsert
+ 
+ where:{
+         id:2
+       },
+       create:{
+        library:{
+          create:{
+            magazine:{
+             
+            }
+          }
+        }
+       }
+      })
+ 
+const magazinesUpdate = await prisma?.user.upsert({
+       where:{
+         id:2
+       },
+       create:{
+        library:{
+          create:{
+            magazine:{
+              create:{
+                
+                author:"Tiago",
+              
+                magazine_pdf:"https://plashmagazine.s3.sa-east-1.amazonaws.com/aRTIGO-13446a18-6214-4a20-9a91-0f23466fbd04.pdf",
+                name:"Skate",
+                cover:["https://plashmagazine.s3.sa-east-1.amazonaws.com/1-bcd001a9-bd93-4707-b038-f9508c306e74.png"]
+              }
+            }
+          }
+        }
+       }
+      })
+ 
+data:{
+       library:{
+        create:{
+          magazine:{
+            create:{
+            
+              
+            }
+          }
+        }
+       }
+       }
+ 
+update
+ 
+    id:2
+ 
+  }
+              }
+ 
+  magazine:{
+                create:{
+ 
+user:{
+          id:2
+         }
+ 
+libray
+ 
+ const magazines = "teste"
+ 
+ where:{
+        id:2
+      }
+ 
+user
+ 
+data:{
+        library:{
+          update:{
+            data:{
+              magazine:{
+                update:{
+                  data:{
+                    author:"",
+                    cover:"",
+                    
+                  }
+                }
+              }
+            }
+          }
+        }
+ 
+update:{
+        library:{
+          create:{
+            magazine:{
+               create:{
+                author:"tiago",
+                name:"Nome da revitsa",
+                cover:"https://www.google.com/imgres?imgurl=https%3A%2F%2Fimg.elo7.com.br%2Fproduct%2Foriginal%2F33FFCD8%2Falbum-fotolivro-revista-15x20-com-20-paginas-revista.jpg&tbnid=0YL3Xj-tacRxtM&vet=12ahUKEwiz2prynY2EAxV0CbkGHZddDdUQMygFegUIARC_AQ..i&imgrefurl=https%3A%2F%2Fphotomuniz.alboompro.com%2Fpost%2F55851-revista-fotografica&docid=5ddQ0wkB3DhhPM&w=4500&h=3000&q=foto%20revista&ved=2ahUKEwiz2prynY2EAxV0CbkGHZddDdUQMygFegUIARC_AQ",
+                magazine_pdf:"teste",
+                id:1
+              }
+            }
+          }
+        }
+      }
+ 
+upsert
+ 
+  magazines Json[]
+ 
+  price         Float
+ 
+  description   String
+ 
+  volume        String
+ 
+  company       String
+ 
+ model magazine {
+ 
+ const teste = await prisma?.user.update({
+        where:{
+          id:2
+        },
+          data:{
+            library:"{"id":"2"}"
+          }
+        
+      })
+ 
+library:{
+            update:{
+              data:{
+                name:"teste"
+              }
+            }
+          }
+ 
+update:{
+ 
+upsert
+ 
+upsert
+ 
+libray
+ 
+  
+       where:{
+       user:{
+        id:2
+       }
+       },
+       update:{
+
+       }
+
+        
+      })
+ 
+ userId:2
+ 
+select:{
+        userId:true
+       },
+ 
+where:{
+        userId:2
+       }
+ 
+ update:{
+          userId:2,
+          magazines:{
+            push:magazines
+          }
+        }
+ 
+create:{
+          magazines:"fdf"
+          
+        
+        }
+ 
+[magazines]
+ 
+set:
+            }
+ 
+   })
+ 
+const userLibrary = await prisma?.user.findUnique({
+        where:{
+          id:2
+        },
+        include:{
+          library:{
+            
+          }
+        }
+ 
+nclude:{
+          library:{
+
+          }
+ 
+update
+ 
+ }
+        }
+ 
+,data:{
+          library:{
+            update:{
+             data:{
+              magazines:{
+                push:{
+                  toJSON() {
+                    magazines
+                  },
+                }
+              }
+             }
+            }
+ 
+magazines
+ 
+ magazines:{
+            
+              }
+ 
+:magazines
+ 
+create
+ 
+["teste"]
+ 
+ const id =2
+ 
+Libray
+ 
+Libray:true,
+ 
+const library = await prisma?.libray.upsert({
+            where: {
+              id: userId,
+            },
+            update: {
+              magazines: {
+                push: novasRevistas,
+              },
+            },
+ 
+userId
+ 
+library
+ 
+const library = await prisma?.libray.update({
+        where: {
+          userId:Number(id) as number
+        } as any[],
+        data: {
+          magazines: {
+            push: [
+              {
+                name: "New Magazine",
+                price: 9.99,
+                picture: "url2",
+              },
+              // Adicione outros itens conforme necessário
+            ],
+          },
+        },
+      });
+ 
+userId:Number(id) as number
+ 
+library
+ 
+library:{
+      create:{
+        name:'Admin'
+      }
+ 
+  library   Libray[]
+ 
+user      user?  @relation(fields: [userId], references: [id])
+  userId    Int?
+ 
+library
+ 
+  const library = await prisma?.libray.update({
+        where: {
+          userId:Number(id) as number
+        } as any,
+        data: {
+          magazines: {
+            push: [
+              {
+                name: "New Magazine",
+                price: 9.99,
+                picture: "url2",
+              },
+              // Adicione outros itens conforme necessário
+            ],
+          },
+        },
+      });
+    }
+ 
+as any
+ 
+user: {
+            id: 2 as number,
+          },
+ 
+any
+ 
+ user: {
+              id: 2,
+            },
+ 
+library
+ 
+ user      user[]
+ 
+ const addLibrary = await prisma?.libray.create({
+        data:{
+        magazines:["teste"],
+        
+        },
+ 
+ const library = await prisma?.user.update({
+         where:{
+          id:1
+         },
+         data:{
+          library:{
+            update:{
+              data:{
+                magazines:[teste]
+              }
+              }
+            }
+          }
+         }
+        })
+ 
+magazines:{
+                set
+ 
+create
+ 
+libray
+ 
+ where: {
+            user: {
+              id: 2,
+            },
+          },
+          data: {
+            magazines: {
+              push: [
+                {
+                  name: 'New Magazine',
+                  price: 9.99,
+                  picture: 'url2',
+                },
+                // Adicione outros itens conforme necessário
+              ],
+            },
+          },
+        });
+ 
+library
+ 
+const library = await prisma?.libray.update({
+          where: {
+            userId: 2,  // Substitua pelo ID do usuário desejado
+          },
+          data: {
+            magazines: {
+              push: [
+                {
+                  name: 'New Magazine',
+                  price: 9.99,
+                  picture: 'url2',
+                },
+                // Adicione outros itens conforme necessário
+              ],
+            },
+          },
+        });
+ 
+library
+ 
+  const library = await prisma?.user.update({
+          where: {
+            id: 2,
+          },
+          data: {
+            library: {
+              update: {
+                data: {
+                  magazines:{
+                    push: [
+                      {
+                        name: 'New Magazine',
+                        price: 9.99,
+                        picture: 'url2',
+                      },
+                      // Adicione outros itens conforme necessário
+                    ],
+                  }
+                  
+                },
+              },
+            },
+          },
+        });
+        
+ 
+library
+ 
+magazines
+ 
+const library = await prisma?.user.update({
+          where: {
+            id:2
+          },
+          update: {
+            magazines: {
+              push: [
+                {
+                  name: 'New Magazine',
+                  price: 9.99,
+                  picture: 'url2',
+                },
+              ],
+            },
+          },
+        });
+ 
+userId:2
+ 
+libray
+ 
+id:2,  // Substitua pelo ID do usuário desejado
+ 
+upsert
+ 
+ as number
+ 
+library
+ 
+ const library = await prisma?.libray.upsert({
+          where: {
+            userId: 2,  // Substitua pelo ID do usuário desejado
+          },
+          update: {
+            magazines: {
+              push: [
+                {
+                  name: 'New Magazine',
+                  price: 9.99,
+                  picture: 'url2',
+                },
+              ],
+            },
+          },
+        });
+ 
+library
+ 
+const library = await prisma?.user.update({
+         where:{
+          id:1
+         },
+         data:{
+            library:{
+              update:{
+                data:{
+                  magazines:{
+                    push:[{
+                      
+                    }]
+                  }
+                }
+              }
+            }
+         }
+           
+        })
+ 
+dvlItems
+ 
+libray
+ 
+where:{
+            
+          },
+          data:{
+
+          }
+ 
+userId:1
+ 
+user
+ 
+ where:{
+            id:2
+          },
+          data:{
+            library:{
+              update:{
+                data:{
+                  magazines:{
+                    push:[""]
+                      
+                    
+                  }
+                }
+              }
+            }
+          }
+ 
+}
+ 
+library:{
+             
+            
+            }
+ 
+ update:{
+                data:{
+                  push
+                }
+ 
+data:{
+
+            library:{
+              
+            }
+ 
+,data:{
+            
+            }
+          }
+        })
+        
+ 
+library:{
+              
+               
+              }
+ 
+reate:{
+ 
+ magazines:{
+                
+                }
+ 
+userId:2
+ 
+libray
+ 
+ console.log(createDvlItems)
+ 
+route.post("/user/:slug",async (req:Request,res:Response)=>{
+  const creatUser = await prisma?.user.findUnique({
+    where:{
+      name:""
+    }
+   data:{
+     name:"Admin",
+     library:{
+       create:{
+         name:'Admin'
+       }
+     }
+   },
+  
+  })
+  return res.status(200).json(creatUser)
+ })
+ 
+findMany
+ 
+create
+ 
+ include:{
+    library:{
+    
+    }
+  }
+ 
+magazines      
+ 
+items
+ 
+Number(
+ 
+findUnique
+ 
+id
+ 
+findUnique
+ 
+  select:{
+     name:true,
+     orders:true,
+     dvlClient:true
+     
+   },
+ 
+user
+ 
+user
+ 
+getStatus.metadata
+ 
+ console.log(createOrder)
+ 
+Number(metadata.user_id)
+ 
+console.log(createOrder)
+ 
+1320988667
+ 
+return res.status(200).json(metadata);
+ 
+satusPayment
+ 
+gtOrder
+ 
+getStatus
+ 
+getStatus
+ 
+gtOrder
+ 
+ console.log(gtOrder.metadata);
+ 
+include:{
+         dvl:true
+       }
+ 
+1320964195
+ 
+export const getPayment = async (req: Request, res: Response) => {
+  
+}
+ 
+route.get("/order",CreateOrder)
+ 
+serId
+          },
+ 
+orderId: Number(createOrder?.id),
+ 
+dvlItems
+ 
+orders:{
+          include:{
+            dvl:true
+          }
+        }
+ 
+ Order   Order? @relation(fields: [orderId], references: [id])
+  orderId Int?
+ 
+  dvl        dvl[]
+ 
+  })),
+ 
+orderId
+        }
+ 
+orderId: Number(createOrder?.id),
+ 
+ dvlItems.map((dvlItem: any) => ({
+ 
+...dvlItem,
+ 
+order
+ 
+dvl
+ 
+dvl: {
+            create: dvlItems.map((dvlItem:any) => ({
+              ...dvlItem,
+              orderId: Number(createOrder?.id)
+            })),
+ 
+// Set the orderId here
+ 
+ dvl:{
+            create:dvlItems
+
+            
+          }
+ 
 dvlClient:true
  
 deletCategory

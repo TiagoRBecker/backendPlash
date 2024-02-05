@@ -9,6 +9,7 @@ import { setTempHashCookie } from "../Middleware/authorizeHash";
 import DvlController from "../Controllers/DVL";
 import GatwayPayment from "../Controllers/MercadoPago";
 import {WebHook,CreateOrder} from "../Controllers/MercadoPago";
+import AuthControllers from "../Controllers/Auth";
 
 const route = Router();
 //Categories
@@ -44,6 +45,10 @@ route.post(
 );
 route.delete("/delet-magazine", MagazineController.deleteMagazine);
 //End UserMaster
+//Auth
+route.post("/signUp",AuthControllers.createAccount)
+route.post("/signIn",AuthControllers.authentication)
+
 
 //Uploads
 
@@ -97,6 +102,7 @@ route.post("/user/:slug",  async (req, res) => {
 });
 route.get("/user/:slug",  async (req, res) => {
      const { slug} = req.params
+     console.log(slug)
   try {
     const user = await prisma?.user.findUnique({
       where:{
@@ -104,11 +110,9 @@ route.get("/user/:slug",  async (req, res) => {
       },
       select:{
         name:true,
-        orders:{
-          include:{
-            dvl:true
-          }
-        }
+        orders:true,
+        dvlClient:true,
+        library:true
         
       },
     
@@ -126,6 +130,25 @@ route.get("/user/:slug",  async (req, res) => {
   
 });
 
+
+route.get("/dvl/:slug",  async (req, res) => {
+  const { slug} = req.params
+try {
+ const user = await prisma?.dvl.findMany({
+  distinct:["name"],
+   where:{
+     name:slug
+   },})
+
+
+ return res.status(200).json(user)
+} catch (error) {
+ console.log(error)
+return res.status(500).json({message:"Erro"})
+}
+
+
+});
 route.get("/user",  async (req, res) => {
    
   try {
@@ -152,7 +175,9 @@ route.get("/user-dvl",DvlController.getAllCategories)
 //payment 
 route.post("/payment",GatwayPayment)
 route.post("/webhook",WebHook)
-route.get("/order",CreateOrder)
+
 //Payemnts and Orders
 
-route.get("/order",CreateOrder)
+route.post("/order",CreateOrder)
+
+
